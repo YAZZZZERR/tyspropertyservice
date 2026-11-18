@@ -23,7 +23,9 @@ document.addEventListener("keydown", (event) => {
 });
 
 document.addEventListener("click", (event) => {
-  if (nav.classList.contains("open") && !nav.contains(event.target) && !menuToggle.contains(event.target)) {
+  if (nav.classList.contains("open") &&
+      !nav.contains(event.target) &&
+      !menuToggle.contains(event.target)) {
     setMenu(false);
   }
 });
@@ -36,12 +38,24 @@ document.getElementById("year").textContent = new Date().getFullYear();
 
 document.getElementById("quoteForm").addEventListener("submit", (event) => {
   event.preventDefault();
+
   const name = document.getElementById("customerName").value.trim();
+  const phone = document.getElementById("customerPhone").value.trim();
+  const location = document.getElementById("customerLocation").value.trim();
   const service = document.getElementById("customerService").value;
   const details = document.getElementById("customerDetails").value.trim();
 
-  const message = `Hi Tys Property Service! My name is ${name}. I'm interested in: ${service}. Job details: ${details}`;
+  const message = [
+    "Hi TYS Property Service!",
+    `My name is ${name}.`,
+    phone ? `My phone number is ${phone}.` : "",
+    location ? `Job location: ${location}.` : "",
+    `I'm interested in: ${service}.`,
+    `Job details: ${details}`
+  ].filter(Boolean).join(" ");
+
   const smsUrl = `sms:8139657570?&body=${encodeURIComponent(message)}`;
-  document.getElementById("formMessage").textContent = "Your text message is ready. Review it in your messaging app, then press send.";
+  document.getElementById("formMessage").textContent =
+    "Your text is ready to review in your messaging app. Press send when you're ready.";
   window.location.href = smsUrl;
 });
