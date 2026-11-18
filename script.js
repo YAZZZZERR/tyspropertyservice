@@ -59,3 +59,84 @@ document.getElementById("quoteForm").addEventListener("submit", (event) => {
     "Your text is ready to review in your messaging app. Press send when you're ready.";
   window.location.href = smsUrl;
 });
+const galleryPhotos = [
+  { src: "assets/ty-property-01.jpg", alt: "TYS Property Service project 1" },
+  { src: "assets/ty-property-02.jpg", alt: "TYS Property Service project 2" },
+  { src: "assets/ty-property-03.jpg", alt: "TYS Property Service project 3" },
+  { src: "assets/ty-property-04.jpg", alt: "TYS Property Service project 4" },
+  { src: "assets/ty-property-05.jpeg", alt: "Fresh mulch and stone landscape edging" },
+  { src: "assets/ty-property-06.jpeg", alt: "Mulch bed and landscaping along home" },
+  { src: "assets/ty-property-07.jpeg", alt: "Maintained residential lawn and landscaping" }
+];
+
+const galleryGrid = document.getElementById("galleryGrid");
+const lightbox = document.getElementById("lightbox");
+const lightboxImage = document.getElementById("lightboxImage");
+const closeButton = document.getElementById("lightboxClose");
+
+galleryPhotos.forEach((photo) => {
+  const item = document.createElement("div");
+  item.className = "gallery-item";
+
+  const img = document.createElement("img");
+  img.src = photo.src;
+  img.alt = photo.alt;
+  img.loading = "lazy";
+
+  item.appendChild(img);
+  galleryGrid.appendChild(item);
+
+  item.addEventListener("click", () => {
+    lightboxImage.src = photo.src;
+    lightboxImage.alt = photo.alt;
+    lightbox.classList.add("active");
+  });
+});
+
+function closeLightbox() {
+  lightbox.classList.remove("active");
+  lightboxImage.src = "";
+}
+
+closeButton.addEventListener("click", closeLightbox);
+
+lightbox.addEventListener("click", (event) => {
+  if (event.target === lightbox) {
+    closeLightbox();
+  }
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    closeLightbox();
+  }
+});
+];
+
+const galleryPhotos = [
+  { src: "assets/ty prop image 1.jpg", alt: "TYS Property Service project 1" },
+  { src: "assets/ty prop image 2.jpg", alt: "TYS Property Service project 2" },
+  { src: "assets/ty prop image 3.jpg", alt: "TYS Property Service project 3" },
+  { src: "assets/ty prop image 4.jpg", alt: "TYS Property Service project 4" },
+  { src: "assets/ty prop image 5.jpg", alt: "TYS Property Service project 5" },
+  { src: "assets/ty prop image 6.jpg", alt: "TYS Property Service project 6" },
+  { src: "assets/ty prop image 7.jpg", alt: "TYS Property Service project 7" }
+];
+function closeLightbox() {
+  lightbox.classList.remove("active");
+  lightboxImage.src = "";
+}
+
+closeButton.addEventListener("click", closeLightbox);
+
+lightbox.addEventListener("click", (event) => {
+  if (event.target === lightbox) {
+    closeLightbox();
+  }
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    closeLightbox();
+  }
+});
